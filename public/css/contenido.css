@@ -1,0 +1,62 @@
+.content-inner{
+	width: 100%;
+	border: solid #000000 0px;
+  	justify-content: center;
+  	padding: 15px;
+}
+.basic-info-table{
+	width: 50%;
+}
+
+.fa-file-alt{
+	color: #D79C73;
+}
+.fa-file-alt:before{
+	content: '\f15c';
+}
+.fa-check-circle{
+	color: #D79C73;
+}
+.fa-check-circle:before{
+	content: '\f058'
+}
+.fa-clock{
+	color: #D79C73;
+}
+.fa-clock:before{
+	content: '\f017'
+}
+.fa-comment-alt{
+	color: #D79C73;
+}
+.fa-comment-alt:before{
+	content: '\f27a'
+}
+.fa-graduation-cap{
+	color: #D79C73;
+}
+.fa-graduation-cap:before{
+	content: '\f19d'
+}
+.fa-dollar-sign{
+	color: #D79C73;
+}
+.fa-dollar-sign:before{
+	content: 'f155'
+}
+.tabla-descripcion{
+	width: 50%;
+	padding: 15px;
+	margin: 15px;
+	border-color: #D79C73;
+}
+.td_content{
+	padding: 15px;
+}
+.td-title{
+	font-weight: bold;
+}
+.btn-accion{
+
+	text-align: right;
+}
