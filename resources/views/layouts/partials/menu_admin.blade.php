@@ -1,7 +1,19 @@
                     <ul id="nav" class="nav navbar-nav">
                         <li><a href="{{ URL::asset('/home') }}">Home</a></li>
-                        <li><a href="{{ URL::asset('/registro') }}">Registrar</a></li>
-                        <li><a href="{{ URL::asset('/contactar') }}">Seguimiento</a></li>
+                        <li class="dropdown">
+                        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Cursos<span class="caret"></span></a>
+                        	<ul class="dropdown-menu">
+                              <li><a href="{{ URL::asset('/listaCursos') }}">Listado</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Personas<span class="caret"></span></a>
+                        	<ul class="dropdown-menu">
+                              <li><a href="{{ URL::asset('/listadoPersonas') }}">Listado</a></li>
+                              <li><a href="{{ URL::asset('/registro') }}">Registrar</a></li>
+                              <li><a href="{{ URL::asset('/contactar') }}">Seguimiento</a></li>
+                            </ul>
+                        </li>
 						<li><a href="{{ URL::asset('/news-admin') }}">Noticias</a></li>
                     </ul>
 

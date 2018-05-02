@@ -54,14 +54,7 @@ class HomeController extends Controller
         $list_order = null;
         switch (Auth::user()->type) {
             case 0:
-                $list_order = Order::join('persons', 'orders.customer_id','=','persons.id')
-                ->join('products', 'orders.product_id','=','products.id')
-                ->where('orders.state','<>','Autorizado')
-                ->where('orders.pay_type',2)
-                ->select('orders.id','orders.code','orders.state','orders.document_path','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.name as pname', 'orders.updated_at')
-                ->get();
-                ;
-                return view('home',['lista_ordenes' => $list_order]);
+                 return view('home');
             break;
             case 1:
                 $list_order = Product::join('orders', 'products.id','=','orders.product_id')
@@ -80,6 +73,25 @@ class HomeController extends Controller
         }
     	
     }
+
+    public function listadoPersonas()
+    {
+        $list_order = null;
+        switch (Auth::user()->type) {
+            case 0:
+                $list_order = Order::join('persons', 'orders.customer_id','=','persons.id')
+                ->join('products', 'orders.product_id','=','products.id')
+                ->where('orders.state','<>','Autorizado')
+                ->where('orders.pay_type',2)
+                ->select('orders.id','orders.code','orders.state','orders.document_path','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.name as pname', 'orders.updated_at')
+                ->get();
+                ;
+                return view('homeAdmin',['lista_ordenes' => $list_order]);
+                break;
+        }
+        
+    }
+    
     public function registro()
     {
     	$order = new Order();

@@ -34,8 +34,21 @@
 					        	@endif 
 					        	<input type="hidden" id="id_{{ $curso->id }}" name="id_{{ $curso->id }}" value="{{ $curso->id }}">
 					        </td>
-					        <td> <a href="#" data-toggle="modal" data-target="#Modal-frminfo" onclick="return loadId1({{ $curso->id }})">Ingresar</a> </td>
-					        <td> <a href="#" data-toggle="modal" data-target="#Modal-frmdetalles" onclick="return loadId2({{ $curso->id }})">Ingresar</a> </td>
+					        <td>
+					        	@if( $curso->detalle == 0 )
+					        		<a href="#" data-toggle="modal" data-target="#Modal-frminfo" onclick="return loadId1({{ $curso->id }})">Ingresar</a> 
+					        	@else
+					        		<a href="#" data-toggle="modal" data-target="#Modal-frmdetalles-up" onclick="return mostrarDescripcion({{ $curso->id }})">Editar</a> 
+					        	@endif	
+					        </td>
+					        <td>
+					        	 
+					        	@if( $curso->contenido == 0 )
+					        		<a href="#" data-toggle="modal" data-target="#Modal-frmdetalles" onclick="return loadId2({{ $curso->id }})">Ingresar</a> 
+					        	@else
+					        		<a href="#" data-toggle="modal" data-target="#Modal-frmdetalles" onclick="return mostrarSilabos({{ $curso->id }})">Revisar</a>
+					        	@endif	
+					        </td>
 					      </tr>  
 					      	@endforeach
 					    @else      
@@ -61,7 +74,7 @@
                                     
                     					<div class="panel panel-default">
                         					<div class="panel-heading">Datos del curso</div>
-                        					<div class="panel-body" id="content-body">
+                        					<div class="panel-body" id="content-body-1">
 												@include('layouts.partials.frmdetallecurso')
 
                     	          			</div>
@@ -107,6 +120,39 @@
                             
                               </div>
                             </div>
+                            <!-- Modal -->
+                            <div id="Modal-frmdetalles-up" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+                            
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Detalles curso</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p></p>
+                                    
+                    					<div class="panel panel-default">
+                        					<div class="panel-heading">Descripcion</div>
+                        					{!! Form::open(['url' => 'product/update', 'method' => 'POST','class' => 'form-horizontal', 'files'=>true, 'id'=>'frm-producto',  'enctype'=>'multipart/form-data']) !!}
+                        					<div class="panel-body" id="content-body-3">
+                        						
+                        						
+                    	          			</div>
+                         					{!!	csrf_field() !!}
+                        					{!! Form::close() !!}                   	          			
+                      					</div>
+                                    
+                                    
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                  </div>
+                                </div>
+                            
+                              </div>
+                            </div>
 		
 @endsection
 
@@ -128,7 +174,42 @@
     }
     function loadId2(id){ 
     	$("#id_product").val($("#id_" + id).val());
-    }
+    }   
+    function mostrarDescripcion(id){
+		var url = "{{ url('descripcion') }}"+ "/" + id;
+		$.ajax({
+			type: "GET",
+			url: url,
+			success: function(data){
+				$.each(data, function(i, item) {
+					if(item.flag != 'FAIL'){
+						$("#content-body-3").html(item.value);	
+					} else {
+						$("#content-body-3").html(item.value);
+					}							
+				});	
+			}
+		});
+		return false;
+}
+    
+    function mostrarSilabos(id){
+		var url = "{{ url('silabos') }}"+ "/" + id;
+		$.ajax({
+			type: "GET",
+			url: url,
+			success: function(data){
+				$.each(data, function(i, item) {
+					if(item.flag != 'FAIL'){
+						$("#resultado").html(item.value);	
+					} else {
+						$("#resultado").html(item.value);
+					}							
+				});	
+			}
+		});
+		return false;
+}
  
 </script>
 @endsection

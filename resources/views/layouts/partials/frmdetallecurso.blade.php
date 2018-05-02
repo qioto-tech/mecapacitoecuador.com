@@ -2,7 +2,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="title">Nombre autor:</label>
             <div class="col-sm-10">
-                <input class="form-control" placeholder="Nombre autor" size="60" id="create_by" name="create_by" type="text">
+                <input class="form-control" placeholder="Nombre autor" size="60" id="autor" name="autor" type="text">
             </div>
         </div>
         <div class="form-group">

@@ -66,10 +66,10 @@ Route::get('/ayuda', function () {
     Route::get('/forma/{producto}', 'OrderController@generateForm');
     Route::get('/revisar/{producto}', 'BeginController@revisar');
     
-    
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/listadoPersonas', 'HomeController@listadoPersonas')->name('listadoPersonas');
 Route::get('/registro', 'HomeController@registro')->name('registro');
 Route::post('/save', 'HomeController@save')->name('save');
 Route::post('/update_order', 'HomeController@update_manual')->name('update_order');
@@ -88,3 +88,9 @@ Route::post('/product/update', 'ProductController@edit');
 Route::get('/contenidos', 'ProductController@show');
 Route::post('/product/detalle', 'ProductController@detalle');
 Route::post('/product/contenido', 'ProductController@contenido');
+Route::get('/descripcion/{producto}', 'ProductController@descripcion');
+Route::get('/silabos/{producto}', 'ProductController@silabos');
+Route::post('/product/update', 'ProductController@update');
+Route::get('/listaCursos', 'ProductController@listaCursos');
+Route::get('/editarCurso/{producto}', 'ProductController@frmEditCurso');
+Route::post('/product/updateAdmin', 'ProductController@updateAdmin');

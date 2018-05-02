@@ -32,7 +32,7 @@
                                 
                                         			</td>
                                         			<td class="td_content">
-                                                    	{{ $curso->create_by }} 
+                                                    	{{ $curso->autor }} 
                                         			</td>
                                         		</tr>
                                                 <tr>

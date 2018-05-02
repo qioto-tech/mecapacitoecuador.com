@@ -27,7 +27,7 @@ class BeginController extends Controller
     public function revisar($curso){
         $lista = Product::join('detail_products','detail_products.id_product','=','products.id')
         ->where('products.id',$curso)
-        ->select('products.id','products.name','products.description','products.amount','products.img_g','detail_products.create_by','detail_products.level','detail_products.commitment','detail_products.language','detail_products.how_to_pass')
+        ->select('products.id','products.name','products.description','products.amount','products.img_g','detail_products.autor','detail_products.level','detail_products.commitment','detail_products.language','detail_products.how_to_pass')
         ->get();
 
         $lista_modulos = Product::join('syllabus_products','syllabus_products.id_product','=','products.id')
