@@ -48,6 +48,10 @@ Route::get('/ayuda', function () {
 		return view('helpme');
 });
 
+    Route::get('/player', 'StreamingController@reproducir');
+    
+    Route::get('/video/{filename}', 'StreamingController@streaming');
+        
     Route::post('contact-us', ['as'=>'contactus.store','uses'=>'NotesController@contactUSPost']);
 	Route::post('/teacher-search-suitable/search', 'TeacherController@searchTeacher_suitable');
 	Route::post('/teacher-search-elegible/search', 'TeacherController@searchTeacher_elegible');
