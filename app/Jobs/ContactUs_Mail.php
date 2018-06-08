@@ -41,7 +41,7 @@ class ContactUs_Mail extends Job
         ];
         
         $mailer->send('contactUs', $data, function($message) {
-            $message->to($this->mail['email'])
+            $message->to('info@mecapacitoecuador.com')
             ->subject(utf8_encode($this->mail['subject']));
         });
     }

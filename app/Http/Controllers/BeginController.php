@@ -37,4 +37,10 @@ class BeginController extends Controller
         
         return view('contenidoModulos',['lista' => $lista, 'listaModulos' => $lista_modulos]);
     }
+    
+    public function contacto()
+    {        
+        return view('contacto');
+    }
+    
 }

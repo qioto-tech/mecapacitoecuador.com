@@ -1221,17 +1221,25 @@
             <table class="one-col-bg" style="border-collapse: collapse;border-spacing: 0;width: 100%;">
                 <tbody><tr>
                         <td style="padding: 0;vertical-align: top;" align="center">
-                            <table class="one-col centered column-bg" style="border-collapse: collapse;border-spacing: 0;Margin-left: auto;Margin-right: auto;background-color: #0F82A8;width: 800px;table-layout: fixed;" emb-background-style>
+                            <table class="one-col centered column-bg" style="border-collapse: collapse;border-spacing: 0;Margin-left: auto;Margin-right: auto;background-color: #ffffff;width: 800px;table-layout: fixed;" emb-background-style>
                                 <tbody><tr>
                                         <td class="column" style="padding: 0;vertical-align: top;text-align: left;">
 
                                             
 
                                             <table class="contents" style="border-collapse: collapse;border-spacing: 0;table-layout: fixed;width: 100%;">
-                                                <tbody><tr>
+                                                <tbody>
+                                                	<tr>
                                                         <td class="padded" style="padding: 0;vertical-align: top;padding-left: 32px;padding-right: 32px;word-break: break-word;word-wrap: break-word;text-align: left;">
 
                                                                  {!!$resumen!!} 
+
+                                                        </td>
+                                                    </tr>
+                                                	<tr>
+                                                        <td class="padded" style="padding: 0;vertical-align: top;padding-left: 32px;padding-right: 32px;word-break: break-word;word-wrap: break-word;text-align: left;">
+
+                                                                 {!!$email!!} 
 
                                                         </td>
                                                     </tr>
