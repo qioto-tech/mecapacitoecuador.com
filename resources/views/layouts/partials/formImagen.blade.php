@@ -1,4 +1,4 @@
-                        <div class="col-sm-5">
+                        <div class="col-sm-12">
                         {!! Form::open(['url' => 'product/update', 'method' => 'POST','class' => 'form-horizontal dropzone', 'files'=>true, 'id'=>'real-dropzone',  'enctype'=>'multipart/form-data']) !!}
     					  	<div class="form-group">
     					    	<label class="control-label col-sm-2" for="customer_lastname">Imagen:</label>

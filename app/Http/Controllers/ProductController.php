@@ -85,7 +85,7 @@ class ProductController extends Controller
         
         $results[] = [ 'value' => $cadena, 'flag' => $flag];
         
-        return response()->json($results);
+        return Redirect::to('/home');
 }
 
     /**
@@ -136,11 +136,14 @@ class ProductController extends Controller
     public function update(Request $request)
     {
         //
-        DB::table('detail_products')
-        ->where('id', $request->id)
-        ->update(['autor' => $request->autor,'level' => $request->level,'commitment' => $request->commitment, 'language' => $request->language, 'how_to_pass' => $request->how_to_pass]);
-        
-        return Redirect::to('/contenidos');
+        if($request->id != 0){
+            DB::table('detail_products')
+            ->where('id', $request->id)
+            ->update(['autor' => $request->autor,'level' => $request->level,'commitment' => $request->commitment, 'language' => $request->language, 'how_to_pass' => $request->how_to_pass]);
+        } else{
+            $this->detalle($request);
+        }
+        return Redirect::to('/home');
     }
 
     /**
@@ -159,7 +162,7 @@ class ProductController extends Controller
         DB::table('detail_products')
         ->insert(
             ['id_product' => $request->id, 'autor' => $request->autor, 'level' => $request->level, 'commitment' => $request->commitment, 'language' => $request->language, 'how_to_pass' => $request->how_to_pass]);
-        return Redirect::to('/contenidos');
+        return Redirect::to('/home');
     }
 
     public function contenido(Request $request){
@@ -171,51 +174,93 @@ class ProductController extends Controller
  
     public function descripcion($id){
         $contenido = '';
+        $results[] = [ 'value' => $contenido, 'FAIL' => 'OK'];
         $listas = DB::table('detail_products')
             ->where('id_product',$id)
             ->select('id','id_product','autor','level','commitment', 'language', 'how_to_pass')
             ->get();
-        
-            foreach ($listas as $detalle) {
+            if( count($listas) != 0){
+                foreach ($listas as $detalle) {
+                    $contenido .= '<div class="form-group">';
+                    $contenido .= '    <label class="control-label col-sm-2" for="title">Nombre autor:</label>';
+                    $contenido .= '    <div class="col-sm-10">';
+                    $contenido .= '        <input class="form-control" placeholder="Nombre autor" size="60" id="autor" name="autor" type="text" value="'.$detalle->autor.'">';
+                    $contenido .= '    </div>';
+                    $contenido .= '</div>';
+                    $contenido .= '<div class="form-group">';
+                    $contenido .= '    <label class="control-label col-sm-2" for="title">Nivel curso:</label>';
+                    $contenido .= '    <div class="col-sm-10">';
+                    $contenido .= '    <input class="form-control" placeholder="Nivel del curso" size="60" id="level" name="level" type="text" value="'.$detalle->level.'">';
+                    $contenido .= '    </div>';
+                    $contenido .= '</div>';
+                    $contenido .= '<div class="form-group">';
+                    $contenido .= '    <label class="control-label col-sm-2" for="title">Duracion curso:</label>';
+                    $contenido .= '    <div class="col-sm-10">';
+                    $contenido .= '    <input class="form-control" placeholder="Duracion (4 weeks of study, 3-5 hours/week)" size="60" id="commitment" name="commitment" type="text" value="'.$detalle->commitment.'">';
+                    $contenido .= '    </div>';
+                    $contenido .= '</div>';
+                    $contenido .= '<div class="form-group">';
+                    $contenido .= '    <label class="control-label col-sm-2" for="title">Idioma curso:</label>';
+                    $contenido .= '    <div class="col-sm-10">';
+                    $contenido .= '    <input class="form-control" placeholder="Idioma del curso" size="60" id="language" name="language" type="text" value="'.$detalle->language.'">';
+                    $contenido .= '    </div>';
+                    $contenido .= '</div>';
+                    $contenido .= '<div class="form-group">';
+                    $contenido .= '    <label class="control-label col-sm-2" for="title">Esfuerzo curso:</label>';
+                    $contenido .= '    <div class="col-sm-10">';
+                    $contenido .= '    <input class="form-control" placeholder="Pass all graded assignments to complete the course." size="60" id="how_to_pass" name="how_to_pass" type="text" value="'.$detalle->how_to_pass.'">';
+                    $contenido .= '    </div>';
+                    $contenido .= '</div>';
+                    $contenido .= '<div class="form-group">';
+                    $contenido .= '    <div class="col-sm-offset-2 col-sm-10">';
+                    $contenido .= '        <input type="hidden" id="id" name="id" value="'.$detalle->id.'">';
+                    $contenido .= '        <input id="submit" name="submit" value="Grabar" class="btn btn-danger" type="submit">';
+                    $contenido .= '        <input id="reset" name="reset" value="Cancelar" class="btn btn-danger" type="reset">';
+                    $contenido .= '    </div>';
+                    $contenido .= '</div>';
+                    $results[] = [ 'value' => $contenido, 'flag' => 'OK'];
+                }
+            } else {
                 $contenido .= '<div class="form-group">';
                 $contenido .= '    <label class="control-label col-sm-2" for="title">Nombre autor:</label>';
                 $contenido .= '    <div class="col-sm-10">';
-                $contenido .= '        <input class="form-control" placeholder="Nombre autor" size="60" id="autor" name="autor" type="text" value="'.$detalle->autor.'">';
+                $contenido .= '        <input class="form-control" placeholder="Nombre autor" size="60" id="autor" name="autor" type="text" value="">';
                 $contenido .= '    </div>';
                 $contenido .= '</div>';
                 $contenido .= '<div class="form-group">';
                 $contenido .= '    <label class="control-label col-sm-2" for="title">Nivel curso:</label>';
                 $contenido .= '    <div class="col-sm-10">';
-                $contenido .= '    <input class="form-control" placeholder="Nivel del curso" size="60" id="level" name="level" type="text" value="'.$detalle->level.'">';
+                $contenido .= '    <input class="form-control" placeholder="Nivel del curso" size="60" id="level" name="level" type="text" value="">';
                 $contenido .= '    </div>';
                 $contenido .= '</div>';
                 $contenido .= '<div class="form-group">';
                 $contenido .= '    <label class="control-label col-sm-2" for="title">Duracion curso:</label>';
                 $contenido .= '    <div class="col-sm-10">';
-                $contenido .= '    <input class="form-control" placeholder="Duracion (4 weeks of study, 3-5 hours/week)" size="60" id="commitment" name="commitment" type="text" value="'.$detalle->commitment.'">';
+                $contenido .= '    <input class="form-control" placeholder="Duracion (4 weeks of study, 3-5 hours/week)" size="60" id="commitment" name="commitment" type="text" value="">';
                 $contenido .= '    </div>';
                 $contenido .= '</div>';
                 $contenido .= '<div class="form-group">';
                 $contenido .= '    <label class="control-label col-sm-2" for="title">Idioma curso:</label>';
                 $contenido .= '    <div class="col-sm-10">';
-                $contenido .= '    <input class="form-control" placeholder="Idioma del curso" size="60" id="language" name="language" type="text" value="'.$detalle->language.'">';
+                $contenido .= '    <input class="form-control" placeholder="Idioma del curso" size="60" id="language" name="language" type="text" value="">';
                 $contenido .= '    </div>';
                 $contenido .= '</div>';
                 $contenido .= '<div class="form-group">';
                 $contenido .= '    <label class="control-label col-sm-2" for="title">Esfuerzo curso:</label>';
                 $contenido .= '    <div class="col-sm-10">';
-                $contenido .= '    <input class="form-control" placeholder="Pass all graded assignments to complete the course." size="60" id="how_to_pass" name="how_to_pass" type="text" value="'.$detalle->how_to_pass.'">';
+                $contenido .= '    <input class="form-control" placeholder="Pass all graded assignments to complete the course." size="60" id="how_to_pass" name="how_to_pass" type="text" value="">';
                 $contenido .= '    </div>';
                 $contenido .= '</div>';
                 $contenido .= '<div class="form-group">';
                 $contenido .= '    <div class="col-sm-offset-2 col-sm-10">';
-                $contenido .= '        <input type="hidden" id="id" name="id" value="'.$detalle->id.'">';
+                $contenido .= '        <input type="hidden" id="id" name="id" value="0">';
                 $contenido .= '        <input id="submit" name="submit" value="Grabar" class="btn btn-danger" type="submit">';
                 $contenido .= '        <input id="reset" name="reset" value="Cancelar" class="btn btn-danger" type="reset">';
                 $contenido .= '    </div>';
                 $contenido .= '</div>';
                 $results[] = [ 'value' => $contenido, 'flag' => 'OK'];
-        }
+                
+            }
         return response()->json($results);
     }
 

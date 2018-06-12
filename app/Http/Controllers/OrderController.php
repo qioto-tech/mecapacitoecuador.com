@@ -104,7 +104,7 @@ class OrderController extends Controller
     	if ( $request->pay_type == 1 ){
     		$order= $this->payment_credit_card( $request );
     		$data = ['order' => $order,
-    			'from' => 'ysqsm',
+    			'from' => 'mce',
 			];
     		$parameters = implode(',',$data);
     		return Redirect::to( $this->payment_service. $parameters );//
@@ -287,7 +287,7 @@ class OrderController extends Controller
     	
     	DB::table('orders')
     	->where('id',$order->id)
-    	->update(['code' => 'QSM'.$order->id, 'pay_type'=> $pay_type]);
+    	->update(['code' => 'MCE'.$order->id, 'pay_type'=> $pay_type]);
     	
     	return $order->id;
     }

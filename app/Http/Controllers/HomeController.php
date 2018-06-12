@@ -57,14 +57,21 @@ class HomeController extends Controller
                  return view('home');
             break;
             case 1:
-                $list_order = Product::join('orders', 'products.id','=','orders.product_id')
-                ->select('products.id','products.name','products.state',DB::raw('count(products.id) as estudiantes'),'pay')
-                                ->where('products.id_user',Auth::user()->id)
-                                ->where('orders.state','Autorizado')
-                                ->groupBy('products.id','products.state','products.name','products.pay')
-                                ->get();
-                return view('homeprofesor',['lista_ordenes' => $list_order]);
-                ;
+//                 $list_order = Product::join('orders', 'products.id','=','orders.product_id')
+//                 ->select('products.id','products.name','products.state',DB::raw('count(products.id) as estudiantes'),'pay')
+//                                 ->where('products.id_user',Auth::user()->id)
+//                                 ->where('orders.state','Autorizado')
+//                                 ->groupBy('products.id','products.state','products.name','products.pay')
+//                                 ->get();
+                                
+                $list_cursos = Product::where('products.id_user',Auth::user()->id)
+                ->where('products.id_product','<>',null)
+                ->get();
+                $list_cursos_padres = Product::where('products.id_product',null)
+                ->where('products.state',1)
+                ->pluck('name','id');
+                return view('homeprofesor',['lista_cursos' => $list_cursos,'lista_cursos_padres' => $list_cursos_padres]);
+                
                 break;
             case 2:
                 return view('homeestudiante',['lista_ordenes' => $list_order]);
