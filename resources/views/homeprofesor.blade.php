@@ -28,7 +28,7 @@
 			<td>{{ $orden->id_product }}</td>
 			<td>@if( $orden->state == 1 ) Activo @else Inactivo @endif</td>
 			<td><a data-toggle="modal" data-target="#myModalDetalle" onclick="return loadDetalles({{ $orden->id }})">Ver</a></td>
-			<td><a onclick="return loadInfo({{ $orden->id }})">Ver</a></td>
+			<td><a onclick="return loadContenido({{ $orden->id }})">Ver</a></td>
 			<td><a data-toggle="modal" data-target="#myModalImage" onclick="return loadIdCurso({{ $orden->id }})">Cargar</a></td>
 			<td><a onclick="return loadInfo({{ $orden->id }})">Ver</a></td>
 		</tr>
@@ -145,6 +145,25 @@ function loadDetalles(id){
 					$("#contenidoDetalleCurso").html(item.value);	
 				} else {
 					$("#contenidoDetalleCurso").html(item.value);
+				}							
+			});	
+		}
+	});
+	return false;
+	
+}
+function loadContenido(id){
+	var url = "{{ url('contenidoCurso') }}"+ "/" + id;
+	$.ajax({
+		type: "GET",
+		url: url,
+		success: function(data){
+			$.each(data, function(i, item) {
+				if(item.flag != 'FAIL'){
+					$("#resultado").html(item.value);
+					$("#id_product").val(id)
+				} else {
+					$("#resultado").html(item.value);
 				}							
 			});	
 		}

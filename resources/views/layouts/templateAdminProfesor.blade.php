@@ -89,10 +89,16 @@
 						<div class="hr"></div>
 					</h2>
 				</div>
-
+				<div class="col-sm-12">
+					<div id="resultado" class="table-responsive"></div>
+				</div>
 				<div class="col-sm-12">
 
 					@yield('content_seccion') <br>
+
+
+				</div>
+
 
 					<div class="col-sm-12">
 						<div id="resultado" class="table-responsive"></div>
@@ -163,13 +169,33 @@
 
 							</div>
 						</div>
+						<!-- Modal -->
+						<div id="myModalContenido" class="modal fade" role="dialog" width="1024px">
+							<div class="modal-dialog">
+
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Detalle del curso</h4>
+									</div>
+									
+	                      					<div class="modal-body" id="contenidoCursoDetalle">
+                        						@include('layouts.partials.frmContenidosCurso')
+                        						
+                    	          			</div>
+
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Cerrar</button>
+									</div>
+								</div>
+
+							</div>
+						</div>
 						
 					</div>
-
-				</div>
-
-
-
 
 
 

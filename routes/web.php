@@ -91,6 +91,7 @@ Route::get('/curso', 'ProductController@create');
 Route::post('/product/save', 'ProductController@store');
 Route::post('/product/update', 'ProductController@edit');
 Route::get('/contenidos', 'ProductController@show');
+Route::get('/contenidoCurso/{id}', 'ProductController@contenidos');
 Route::post('/product/detalle', 'ProductController@detalle');
 Route::post('/product/contenido', 'ProductController@contenido');
 Route::get('/descripcion/{producto}', 'ProductController@descripcion');
