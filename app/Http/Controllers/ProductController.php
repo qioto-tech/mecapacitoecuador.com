@@ -166,12 +166,37 @@ class ProductController extends Controller
     }
 
     public function contenido(Request $request){
+        $contenido = '';
         DB::table('syllabus_products')
         ->insert(
             ['id_product' => $request->id_product, 'week' =>  $request->week, 'description' =>  $request->description]);
         
-        $this->contenidos($request->id_product);
-        return Redirect::to('/home');
+        $listadoSilabos = DB::table('syllabus_products')
+        ->where('id_product', $request->id_product)
+        ->get();
+        $contenido .= '<div class="panel panel-default">';
+        $contenido .= '<div class="panel-heading">Contenido del Curso</div>';
+        $contenido .= '<div class="panel-body"><button type="button" class="btn btn-primary  btn-md"
+	data-toggle="modal" data-target="#myModalContenido">Nuevo Contenido</button>';
+        
+        if(count($listadoSilabos) > 0){
+            foreach ($listadoSilabos as $silabo) {
+                $contenido .= '<div class="panel panel-warning">';
+                $contenido .= '<div class="panel-heading">'. $silabo->week .'</div>';
+                $contenido .= '<div class="panel-body">'. $silabo->description .'</div>';
+                $contenido .= '</div>';
+            }
+            $flag = 'OK';
+        } else {
+            $contenido .= '<div class="panel panel-warning">No hay datos';
+            $contenido .= '</div>';
+            $flag = 'FAIL';
+        }
+        $contenido .= '</div>';
+        $contenido .= '</div>';
+        $results[] = [ 'value' => $contenido, 'flag' => $flag];
+        return response()->json($results);
+        
     }
  
     public function descripcion($id){

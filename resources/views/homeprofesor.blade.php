@@ -20,16 +20,17 @@
 		</tr>
 	</thead>
 	<tbody>
-		@if( count ($lista_cursos) > 0 ) 
-		@foreach($lista_cursos as $orden)
+		@if( count ($lista_cursos) > 0 ) @foreach($lista_cursos as $orden)
 		<tr>
 			<td>{{ $orden->id }}</td>
 			<td>{{ $orden->name }}</td>
 			<td>{{ $orden->id_product }}</td>
 			<td>@if( $orden->state == 1 ) Activo @else Inactivo @endif</td>
-			<td><a data-toggle="modal" data-target="#myModalDetalle" onclick="return loadDetalles({{ $orden->id }})">Ver</a></td>
+			<td><a data-toggle="modal" data-target="#myModalDetalle"
+				onclick="return loadDetalles({{ $orden->id }})">Ver</a></td>
 			<td><a onclick="return loadContenido({{ $orden->id }})">Ver</a></td>
-			<td><a data-toggle="modal" data-target="#myModalImage" onclick="return loadIdCurso({{ $orden->id }})">Cargar</a></td>
+			<td><a data-toggle="modal" data-target="#myModalImage"
+				onclick="return loadIdCurso({{ $orden->id }})">Cargar</a></td>
 			<td><a onclick="return loadInfo({{ $orden->id }})">Ver</a></td>
 		</tr>
 		@endforeach @else
@@ -40,11 +41,7 @@
 	</tbody>
 </table>
 
-@endsection 
-
-@section('content_formulario') 
-
-{!! Form::open(['url' =>
+@endsection @section('content_formulario') {!! Form::open(['url' =>
 'product/save', 'method' => 'POST','class' => 'form-horizontal',
 'files'=>true, 'id'=>'frm-producto', 'enctype'=>'multipart/form-data'])
 !!}
@@ -86,31 +83,32 @@
 
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">
-		<input type="hidden" id="code" name="code" value="0"> 
-		<input type="hidden" id="state" name="state" value="0"> 
-		<input type="hidden" id="promotion" name="promotion" value="0"> 
-		<input type="hidden" id="amount" name="amount" value="0"> 
-		<input type="hidden" id="id_user" name="id_user" value="{{ Auth::user()->id }}"> 
-		<input id="submit" name="submit" value="Grabar" class="btn btn-danger" type="submit" /> 
-		<input id="reset" name="reset" value="Cancelar" class="btn btn-danger" type="reset" />
+		<input type="hidden" id="code" name="code" value="0"> <input
+			type="hidden" id="state" name="state" value="0"> <input type="hidden"
+			id="promotion" name="promotion" value="0"> <input type="hidden"
+			id="amount" name="amount" value="0"> <input type="hidden"
+			id="id_user" name="id_user" value="{{ Auth::user()->id }}"> <input
+			id="submit" name="submit" value="Grabar" class="btn btn-danger"
+			type="submit" /> <input id="reset" name="reset" value="Cancelar"
+			class="btn btn-danger" type="reset" />
 	</div>
 </div>
 
-{!! csrf_field() !!} {!! Form::close() !!} 
-@endsection
+{!! csrf_field() !!} {!! Form::close() !!} @endsection
 
 @section('script_seccion')
 
 <script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-	<link rel="stylesheet" href="{{ URL::asset('assets/dropzone/dropzone.css') }}">
-	<script src="{{ URL::asset('assets/dropzone/dropzone.js') }}"></script> 
-	<script src="{{ URL::asset('assets/dropzone/dropzone-config.js') }}"></script> 
-    
+<link rel="stylesheet"
+	href="{{ URL::asset('assets/dropzone/dropzone.css') }}">
+<script src="{{ URL::asset('assets/dropzone/dropzone.js') }}"></script>
+<script src="{{ URL::asset('assets/dropzone/dropzone-config.js') }}"></script>
+
 
 
 <script>
-            
+           
 
 function loadInfo(id){
 		var url = "{{ url('deposit/result/') }}"+ "/" + id;
@@ -171,6 +169,8 @@ function loadContenido(id){
 	return false;
 	
 }
+
+
 </script>
 @endsection
 

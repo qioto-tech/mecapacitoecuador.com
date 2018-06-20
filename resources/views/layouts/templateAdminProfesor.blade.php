@@ -170,7 +170,7 @@
 							</div>
 						</div>
 						<!-- Modal -->
-						<div id="myModalContenido" class="modal fade" role="dialog" width="1024px">
+						<div id="myModalContenido" class="modal fade" role="dialog">
 							<div class="modal-dialog">
 
 								<!-- Modal content-->
@@ -257,5 +257,41 @@
 	<script src="js/wow.min.js"></script>
 	<script src="js/main-admin.js"></script>
 	@yield('script_seccion')
+		<script>
+	$(function() {
+
+		$(document).on('submit', '#frm-producto1', function(e) {
+		    e.preventDefault();
+		    url = "{{ url('product/contenido') }}";
+		    $("#description").val(CKEDITOR.instances.description.getData()) ;
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: $('#frm-producto1').serialize(),
+			success: function(data){
+				$.each(data, function(i, item) {
+					if(item.flag != 'FAIL'){
+						alert('El contenido del curso guardado correctamente');
+						$('#week').val('');
+						CKEDITOR.instances.description.setData("");
+						$('#resultado').html(item.value);
+						
+					} else {
+						alert('No se guardado el contenido del curso correctamente!!!');
+					}							
+				});	
+			},
+			error: function() {
+	            alert('Error');
+	        }
+		});
+// 		$('#myModalContenido').modal('hide');
+		
+		return false;
+	});
+	});
+
+
+</script>	
 </body>
 </html>
