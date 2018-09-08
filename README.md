@@ -1,1 +1,1 @@
-# yosiquierosermaestro.com# mecapacitoecuador.com
+# mecapacitoecuador.com# mecapacitoecuador.com
