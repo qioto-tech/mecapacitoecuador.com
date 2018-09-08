@@ -148,49 +148,49 @@ Comparte esta noticia para que nadie se quede fuera del proceso, para ir al form
 						</div>
 
                         <div class="col-sm-7">
-                          <h3>Verifica si eres idoneo</h3>
+<!--                           <h3>Verifica si eres idoneo</h3> -->
                           
-                            {!! Form::open([null, null, 'class'=>'form-horizontal', 'role'=>'form','name'=>'frmsearch','id'=>'frmsearch']) !!}
-                              <div class="form-group">
-                              	<label class="control-label col-sm-2" for="name">Usuario</label>
-                              	<div class="col-sm-8">
-                                	{!!	Form::text('ci',null,['class'=>'form-control', 'placeholder'=>'Introduce el numero de cedula','size'=>'40', 'id'=>'ci', 'name'=>'ci']) !!}     
-                              	</div>
-                              </div>	
-                              <div class="form-group">
-                            	<div class="col-sm-offset-2 col-sm-8">	
-                              		<button type="button" class="btn btn-primary" id="btn-search-suitable">Comprobar idoneidad</button>                              		
-                            	</div>
-                              </div>
-                            {!!	csrf_field() !!}
-                            {!! Form::close() !!}
+<!--                             {!! Form::open([null, null, 'class'=>'form-horizontal', 'role'=>'form','name'=>'frmsearch','id'=>'frmsearch']) !!} -->
+<!--                               <div class="form-group"> -->
+<!--                               	<label class="control-label col-sm-2" for="name">Usuario</label> -->
+<!--                               	<div class="col-sm-8"> -->
+<!--                                 	{!!	Form::text('ci',null,['class'=>'form-control', 'placeholder'=>'Introduce el numero de cedula','size'=>'40', 'id'=>'ci', 'name'=>'ci']) !!}      -->
+<!--                               	</div> -->
+<!--                               </div>	 -->
+<!--                               <div class="form-group"> -->
+<!--                             	<div class="col-sm-offset-2 col-sm-8">	 -->
+<!--                               		<button type="button" class="btn btn-primary" id="btn-search-suitable">Comprobar idoneidad</button>                              		 -->
+<!--                             	</div> -->
+<!--                               </div> -->
+<!--                             {!!	csrf_field() !!} -->
+<!--                             {!! Form::close() !!} -->
                                                     
-                          <p>Que tienes capacidades para ser docente</p>
-                          <p></p>
-                          <hr>
-                          <h3>Verifica si eres elegible</h3>
+<!--                           <p>Que tienes capacidades para ser docente</p> -->
+<!--                           <p></p> -->
+<!--                           <hr> -->
+<!--                           <h3>Verifica si eres elegible</h3> -->
                           
-                            {!! Form::open([null, null, 'class'=>'form-horizontal', 'role'=>'form','name'=>'frmsearching','id'=>'frmsearching']) !!}
+<!--                             {!! Form::open([null, null, 'class'=>'form-horizontal', 'role'=>'form','name'=>'frmsearching','id'=>'frmsearching']) !!} -->
 
-                              <div class="form-group">
-                              	<label class="control-label col-sm-2" for="name">Usuario</label>
-                              	<div class="col-sm-8">
-                                	{!!	Form::text('ci',null,['class'=>'form-control', 'placeholder'=>'Introduce el numero de cedula','size'=>'40', 'id'=>'ci_1', 'name'=>'ci_1']) !!}          
-                              	</div>
-                              </div>	
+<!--                               <div class="form-group"> -->
+<!--                               	<label class="control-label col-sm-2" for="name">Usuario</label> -->
+<!--                               	<div class="col-sm-8"> -->
+<!--                                 	{!!	Form::text('ci',null,['class'=>'form-control', 'placeholder'=>'Introduce el numero de cedula','size'=>'40', 'id'=>'ci_1', 'name'=>'ci_1']) !!}           -->
+<!--                               	</div> -->
+<!--                               </div>	 -->
                               
-                              <div class="form-group">
-                            	<div class="col-sm-offset-2 col-sm-8">						  
-                              		<button type="button" class="btn btn-primary" id="btn-search-elegible">Buscar elegible</button>
-                            	</div>
-                              </div>
-                            {!!	csrf_field() !!}
-                            {!! Form::close() !!}
+<!--                               <div class="form-group"> -->
+<!--                             	<div class="col-sm-offset-2 col-sm-8">						   -->
+<!--                               		<button type="button" class="btn btn-primary" id="btn-search-elegible">Buscar elegible</button> -->
+<!--                             	</div> -->
+<!--                               </div> -->
+<!--                             {!!	csrf_field() !!} -->
+<!--                             {!! Form::close() !!} -->
                           
                           
-                          <p>Que puedes ser llamado para integrarte como educador</p>
-                          <p></p>
-                          <hr>
+<!--                           <p>Que puedes ser llamado para integrarte como educador</p> -->
+<!--                           <p></p> -->
+<!--                           <hr> -->
                           <h3>Resultado de las pruebas personalidad</h3>
                             {!! Form::open([null, null, 'class'=>'form-horizontal', 'role'=>'form','name'=>'frmvalidate','id'=>'frmvalidate']) !!}
                               <div class="form-group">
@@ -227,6 +227,39 @@ Comparte esta noticia para que nadie se quede fuera del proceso, para ir al form
                           <br>
                           <p>Conoce las escalas de las pruebas. <a href="#" data-toggle="modal" data-target="#Modal-info"  onclick="">Aqui.</a></p>
                           <p></p>
+
+                          <hr>
+                          <h3>Resultado del Test de Orientacion Vocacional</h3>
+                            {!! Form::open([null, null, 'class'=>'form-horizontal', 'role'=>'form','name'=>'frmValidateTestOcupacional','id'=>'frmValidateTestOcupacional']) !!}
+                              <div class="form-group">
+                              	<label class="control-label col-sm-2" for="name">Usuario</label>
+                              	<div class="col-sm-8">
+                                	{!!	Form::text('usuario',null,['class'=>'form-control', 'placeholder'=>'Introduce el numero el usuario','size'=>'40', 'id'=>'usuarioTestV', 'name'=>'usuarioTestV']) !!}       
+                              	</div>
+                              </div>	
+                              <div class="form-group">
+                                <label class="control-label col-sm-2" for="name">Contrase&ntilde;a</label>
+                                <div class="col-sm-8">
+                                	{!!	Form::password('password',['class'=>'form-control', 'id'=>'passwordTestV', 'name'=>'passwordTestV']) !!}       
+                              	</div>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label col-sm-2" for="name">Intentos</label>
+                                <div class="col-sm-8">
+                                	{!!	Form::select('attempt',['1' => 'Primer Intento', '2' => 'Segundo Intento', '3' => 'Tercero Intento', '4' => 'Cuarto Intento', '5' => 'Quinto Intento', '6' => 'Sexto Intento', '7' => 'Septimo Intento', '8' => 'Octavo Intento', '9' => 'Noveno Intento', '10' => 'Decimo Intento'],null,['class'=>'form-control', 'placeholder'=>'Selecciona el intento', 'id'=>'attemptTestV', 'name'=>'attemptTestV']) !!}       
+                              	</div>
+                              </div>
+                              <div class="form-group">
+                            	<div class="col-sm-offset-2 col-sm-8">						  
+                              		<button type="button" class="btn btn-primary" id="btn-validateTestOcupacional">Ver resultados</button>
+                            	</div>
+                              </div>
+                            {!!	csrf_field() !!}
+                            {!! Form::close() !!}
+                          <br>
+                          <p>Conoce las escalas de las pruebas. <a href="#" data-toggle="modal" data-target="#Modal-info"  onclick="">Aqui.</a></p>
+                          <p></p>
+
 
                             <!-- Modal -->
                             <div id="Modal-info" class="modal fade" role="dialog">

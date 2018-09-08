@@ -65,6 +65,7 @@ Route::get('/ayuda', function () {
 	Route::get('/autorizar/{order}', 'OrderController@authorize_payment');
 	Route::post('/search/search', 'TeacherController@search');
 	Route::post('/search-result/result', 'ResultController@validate_result');
+	Route::post('/search-result/resultVocacional', 'ResultVocacionalController@validate_result_vocacional');
 	Route::get('/parameters/result/{param}/{note}', 'ResultController@parameters_result');
     Route::get('/render/{id_partial}', ['as' => 'render', 'uses' => 'OrderController@RenderPartial']);
     Route::post('upload', ['as' => 'upload-post', 'uses' =>'ImageController@postUpload']);

@@ -9,8 +9,8 @@
 @section('content_seccion')
 
 <div class="content-inner">
-					    @if( count ($lista) > 0 )
-					    	@foreach($lista as $curso)		
+					    @if( count ($cursos) > 0 )
+					    	@foreach($cursos as $curso)		
 					    	<div class="btn-accion">
 								<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#Modal-frm" onclick="loadFrmOrder({{ $curso->id }});" >Inscribirse</button>
 							</div>

@@ -41,7 +41,10 @@
 	</tbody>
 </table>
 
-@endsection @section('content_formulario') {!! Form::open(['url' =>
+@endsection 
+
+@section('content_formulario') 
+{!! Form::open(['url' =>
 'product/save', 'method' => 'POST','class' => 'form-horizontal',
 'files'=>true, 'id'=>'frm-producto', 'enctype'=>'multipart/form-data'])
 !!}

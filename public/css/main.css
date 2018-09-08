@@ -706,13 +706,13 @@ main > section {
 
 figcaption.mask {
     background-color: rgba(54, 55, 50, 0.79);
-    bottom: -126px;
+    bottom: -29px;
     color: #fff;
     padding: 25px;
     position: absolute;
     width: 100%;
     text-align: left;
-    
+    height: 159px;
     -webkit-transition: all 0.4s ease 0s;
        -moz-transition: all 0.4s ease 0s;
         -ms-transition: all 0.4s ease 0s;
@@ -752,7 +752,7 @@ ul.external li a {
     background-color: rgba(255, 255, 255, 0.9);
     color: #5b5b5b;
     display: block;
-    padding: 10px 18px 13px;
+    padding: 22px 18px 13px;
     
     -webkit-transition: all 0.5s ease 0s;
        -moz-transition: all 0.5s ease 0s;

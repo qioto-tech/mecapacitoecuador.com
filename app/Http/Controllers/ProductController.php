@@ -139,7 +139,7 @@ class ProductController extends Controller
         if($request->id != 0){
             DB::table('detail_products')
             ->where('id', $request->id)
-            ->update(['autor' => $request->autor,'level' => $request->level,'commitment' => $request->commitment, 'language' => $request->language, 'how_to_pass' => $request->how_to_pass]);
+            ->update(['id_product' => $request->id_product,'autor' => $request->autor,'level' => $request->level,'commitment' => $request->commitment, 'language' => $request->language, 'how_to_pass' => $request->how_to_pass]);
         } else{
             $this->detalle($request);
         }
@@ -161,7 +161,7 @@ class ProductController extends Controller
     public function detalle(Request $request){
         DB::table('detail_products')
         ->insert(
-            ['id_product' => $request->id, 'autor' => $request->autor, 'level' => $request->level, 'commitment' => $request->commitment, 'language' => $request->language, 'how_to_pass' => $request->how_to_pass]);
+            ['id_product' => $request->id_product, 'autor' => $request->autor, 'level' => $request->level, 'commitment' => $request->commitment, 'language' => $request->language, 'how_to_pass' => $request->how_to_pass]);
         return Redirect::to('/home');
     }
 
@@ -241,6 +241,7 @@ class ProductController extends Controller
                     $contenido .= '<div class="form-group">';
                     $contenido .= '    <div class="col-sm-offset-2 col-sm-10">';
                     $contenido .= '        <input type="hidden" id="id" name="id" value="'.$detalle->id.'">';
+                    $contenido .= '        <input type="hidden" id="id_product" name="id_product" value="'.$detalle->id_product.'">';
                     $contenido .= '        <input id="submit" name="submit" value="Grabar" class="btn btn-danger" type="submit">';
                     $contenido .= '        <input id="reset" name="reset" value="Cancelar" class="btn btn-danger" type="reset">';
                     $contenido .= '    </div>';
@@ -281,6 +282,7 @@ class ProductController extends Controller
                 $contenido .= '<div class="form-group">';
                 $contenido .= '    <div class="col-sm-offset-2 col-sm-10">';
                 $contenido .= '        <input type="hidden" id="id" name="id" value="0">';
+                $contenido .= '        <input type="hidden" id="id_product" name="id_product" value="'.$id.'">';
                 $contenido .= '        <input id="submit" name="submit" value="Grabar" class="btn btn-danger" type="submit">';
                 $contenido .= '        <input id="reset" name="reset" value="Cancelar" class="btn btn-danger" type="reset">';
                 $contenido .= '    </div>';

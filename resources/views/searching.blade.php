@@ -147,7 +147,28 @@
             		return false;
             	});
             
-            
+            	$("#btn-validateTestOcupacional").on("click", function() {
+            		if( $("#usuarioTestV").val() === '' || $("#passwordTestV").val() === '' ){
+            			alert('Se requiere todos los campos');
+            		} else {
+            			$("#resultado").html('');
+            			$("#parametro").html('');
+            			var url = "{{ url('/search-result/resultVocacional') }}";
+            			$.ajax({
+            				type: "POST",
+            				url: url,
+            				data: $('#frmValidateTestOcupacional').serialize(),
+            				success: function(data){
+            					$.each(data, function(i, item) {
+            						$("#resultado").html(item.value);							
+            					});	
+            				}
+            			});
+            		}
+            		return false;
+            	});
+
+            	            
             });
 
         </script>

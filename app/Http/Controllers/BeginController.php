@@ -15,27 +15,34 @@ class BeginController extends Controller
     public function index()
     {
         //
-        $lista = Product::where('type',2)
+        $listaCursos = Product::where('type',2)
+                    ->where('state',1)
+                    ->select('id','name','description','img_p','img_g')
+                    ->get();
+        $listaSimuladores = Product::where('type',1)
                     ->where('state',1)
                     ->select('id','name','description','img_p','img_g')
                     ->get();
         
-        return view('begin',['lista' => $lista]);
+        return view('begin',['cursos' => $listaCursos, 'simuladores' => $listaSimuladores]);
     }
     
     
-    public function revisar($curso){
-        $lista = Product::join('detail_products','detail_products.id_product','=','products.id')
-        ->where('products.id',$curso)
-        ->select('products.id','products.name','products.description','products.amount','products.img_g','detail_products.autor','detail_products.level','detail_products.commitment','detail_products.language','detail_products.how_to_pass')
-        ->get();
-
-        $lista_modulos = Product::join('syllabus_products','syllabus_products.id_product','=','products.id')
-        ->where('products.id',$curso)
-        ->select('products.id','syllabus_products.week','syllabus_products.description')
-        ->get();
+    public function revisar($producto){
         
-        return view('contenidoModulos',['lista' => $lista, 'listaModulos' => $lista_modulos]);
+        $cursos = Product::leftJoin('detail_products','detail_products.id_product','=','products.id')
+        ->where('products.id',$producto)
+        ->select('products.id','products.name','products.description','products.amount','products.img_g','detail_products.autor','detail_products.level','detail_products.commitment','detail_products.language','detail_products.how_to_pass','products.state')
+        ->get();
+        $curso_modulos = null;
+
+        if($cursos[0]->state != 1){
+            $curso_modulos = Product::join('syllabus_products','syllabus_products.id_product','=','products.id')
+            ->where('products.id',$producto)
+            ->select('products.id','syllabus_products.week','syllabus_products.description')
+            ->get();
+        }
+        return view('contenidoModulos',['cursos' => $cursos, 'listaModulos' => $curso_modulos]);
     }
     
     public function contacto()
